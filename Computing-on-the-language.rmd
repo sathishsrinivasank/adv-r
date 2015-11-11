@@ -162,6 +162,17 @@ How does `subset()` work? We've already seen how to capture an argument's expres
 
 Before we can explore `eval()`, we need one more useful function: `quote()`. It captures an unevaluated expression like `substitute()`, but doesn't do any of the advanced transformations that can make `substitute()` confusing. `quote()` always returns its input as is: \indexc{quote()} \index{quoting}
 
+A good example to distinguish substitute and quote would be to use them for getting labels for x-axis and y-axis in the myplot function as shown below.
+
+```{r, eval = TRUE}
+myplot <- function(x, y) {
+  plot(x, y, 
+       xlab = deparse(substitute(x)),
+       ylab = deparse(quote(y)))
+}
+myplot(1:5,1:5)
+```
+
 ```{r}
 quote(1:10)
 quote(x)
